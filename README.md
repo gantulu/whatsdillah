@@ -1,9 +1,9 @@
 WhatsApp Cloud API Integration
 
-Technical Specification — V1.5
+Technical Specification — V1.6
 
 Repository: gantulu/whatsdillah
-Version: 1.5
+Version: 1.6
 Status: Draft — Revisi dari V1.4
 Architecture: React + Vite + TypeScript + Supabase Edge Functions + PostgreSQL + Realtime
 WhatsApp Integration: Official Meta WhatsApp Cloud API
@@ -60,7 +60,7 @@ Integrasi WhatsApp menggunakan API resmi Meta.
 
 2. Fixed Architecture Decisions
 
-Keputusan berikut menjadi dasar implementasi V1.5.
+Keputusan berikut menjadi dasar implementasi V1.6.
 
 Component
 
@@ -136,7 +136,17 @@ Supabase
 
 2.1 Public Access
 
-Aplikasi tidak memiliki sistem autentikasi dan tidak memerlukan login.
+Definisi public untuk aplikasi ini:
+- Siapa saja dapat membuka dan menggunakan aplikasi melalui URL publik.
+- Tidak ada login, registrasi, akun pengguna, atau Supabase Auth.
+- Tidak ada pembatasan penggunaan aplikasi berdasarkan identitas pengguna.
+- Semua pengunjung menggunakan akses database melalui role anon.
+- Operasi baca/tulis database mengikuti public grants dan RLS policies yang ditetapkan pada spesifikasi ini.
+- Endpoint whatsapp-send-message dapat dipanggil tanpa user login.
+- Tidak ada pemisahan data atau kepemilikan berdasarkan pengguna.
+
+Aplikasi ini memang dirancang sebagai aplikasi WhatsApp Management yang terbuka untuk umum. Public bukan sekadar berarti halaman frontend dapat dilihat; pengunjung juga dapat menggunakan fitur aplikasi sesuai operasi yang disediakan.
+
 
 Konfigurasi akses:
 
@@ -328,7 +338,7 @@ Tidak memasukkan Supabase Secret Key ke frontend.
 
 6. Database Design
 
-V1.5 tetap menggunakan dua tabel utama:
+V1.6 tetap menggunakan dua tabel utama:
 
 contacts
 
@@ -466,7 +476,7 @@ wamid unique apabila tersedia.
 
 direction hanya menerima incoming atau outgoing.
 
-message_type untuk V1.5 hanya menerima text.
+message_type untuk V1.6 hanya menerima text.
 
 message wajib diisi.
 
@@ -1683,7 +1693,7 @@ Additional Security System: None.
 
 22. Definition of Done
 
-V1.5 dinyatakan selesai apabila aplikasi dapat:
+V1.6 dinyatakan selesai apabila aplikasi dapat:
 
 Menampilkan aplikasi WhatsApp Management melalui React Frontend.
 
@@ -1711,4 +1721,4 @@ Berjalan di GitHub Pages dengan backend di Supabase.
 
 Aplikasi menggunakan akses public tanpa Supabase Auth, tanpa login, dan tanpa sistem keamanan tambahan sesuai keputusan arsitektur proyek.
 
-END OF TECHNICAL SPECIFICATION V1.5
+END OF TECHNICAL SPECIFICATION V1.6
